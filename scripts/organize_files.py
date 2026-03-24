@@ -1,16 +1,21 @@
 #!/usr/bin/env python3
 """Organize files in a directory into folders.
 
-By default, files are moved into folders based on extension:
-- photo.jpg -> images/photo.jpg
-- report.pdf -> pdf/report.pdf
+Default behavior sorts files into these folders using filename keywords:
+- sales-clymax-rovex
+- school
+- personal-finance
+- others
 
-Use --by month to group by modified month (YYYY-MM).
+Alternate grouping modes:
+- --by extension
+- --by month
 """
 
 from __future__ import annotations
 
 import argparse
+import datetime
 import shutil
 from pathlib import Path
 
@@ -38,6 +43,12 @@ EXTENSION_GROUPS = {
     ".mov": "video",
 }
 
+CATEGORY_KEYWORDS = {
+    "sales-clymax-rovex": ["sales", "clymax", "rovex"],
+    "school": ["school", "class", "course", "homework", "assignment", "study"],
+    "personal-finance": ["finance", "bank", "budget", "tax", "invoice", "receipt", "expense"],
+}
+
 
 def unique_destination(destination: Path) -> Path:
     if not destination.exists():
@@ -55,16 +66,26 @@ def unique_destination(destination: Path) -> Path:
         counter += 1
 
 
+def folder_for_category(file_path: Path) -> str:
+    name = file_path.name.lower()
+    for folder, keywords in CATEGORY_KEYWORDS.items():
+        if any(keyword in name for keyword in keywords):
+            return folder
+    return "others"
+
+
 def folder_for_file(file_path: Path, method: str) -> str:
     if method == "month":
         modified = file_path.stat().st_mtime
-        return __import__("datetime").datetime.fromtimestamp(modified).strftime("%Y-%m")
+        return datetime.datetime.fromtimestamp(modified).strftime("%Y-%m")
 
-    extension = file_path.suffix.lower()
-    if extension:
-        return EXTENSION_GROUPS.get(extension, extension[1:] if len(extension) > 1 else "other")
+    if method == "extension":
+        extension = file_path.suffix.lower()
+        if extension:
+            return EXTENSION_GROUPS.get(extension, extension[1:] if len(extension) > 1 else "other")
+        return "other"
 
-    return "other"
+    return folder_for_category(file_path)
 
 
 def organize(target_dir: Path, method: str, dry_run: bool) -> int:
@@ -95,9 +116,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("directory", nargs="?", default=".", help="Directory to organize (default: current directory)")
     parser.add_argument(
         "--by",
-        choices=["extension", "month"],
-        default="extension",
-        help="How to group files (default: extension)",
+        choices=["category", "extension", "month"],
+        default="category",
+        help="Grouping method (default: category)",
     )
     parser.add_argument("--dry-run", action="store_true", help="Preview moves without changing files")
     return parser.parse_args()
