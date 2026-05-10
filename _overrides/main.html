@@ -1,11 +1,72 @@
 {% extends "base.html" %}
 
 {% block extrahead %}
+{{ super() }}
 <meta name="ahrefs-site-verification" content="b13556bca44be7ae858f67ddbdd71eaa177d9389a88eb295244299a87292d60a">
+<style>
+  #mothers-day-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: linear-gradient(90deg, #f9a8d4 0%, #fbcfe8 50%, #f9a8d4 100%);
+    color: #831843;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 10px 16px;
+    text-align: center;
+    position: relative;
+    z-index: 100;
+    flex-wrap: wrap;
+  }
+  #mothers-day-banner a.md-banner__cta {
+    background: #be185d;
+    color: #fff;
+    text-decoration: none;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    transition: background 0.2s;
+  }
+  #mothers-day-banner a.md-banner__cta:hover {
+    background: #9d174d;
+  }
+  #mothers-day-banner .md-banner__code {
+    background: #fff;
+    color: #be185d;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    border: 1px solid #fbcfe8;
+    white-space: nowrap;
+  }
+  #mothers-day-banner .md-banner__strike {
+    text-decoration: line-through;
+    opacity: 0.6;
+    margin-right: 2px;
+  }
+  #mothers-day-banner button.md-banner__close {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #be185d;
+    font-size: 1.1rem;
+    line-height: 1;
+    padding: 4px;
+    opacity: 0.7;
+  }
+  #mothers-day-banner button.md-banner__close:hover { opacity: 1; }
+</style>
 {% endblock %}
 
 {% block htmltitle %}
-
 {% if page.meta and page.meta.title %}
 <title>{{ page.meta.title }} | {{ config.site_name }} </title>
 {% elif page.title and not page.is_homepage %}
@@ -13,7 +74,6 @@
 {% else %}
 <title>{{ config.site_name }}</title>
 {% endif %}
-
 {% endblock %}
 
 {% block libs %}
@@ -53,6 +113,25 @@ https://plausible.io/docs/script-extensions?ref=ryansechrest.com#all-our-script-
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K86VCV3"
 	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+
+<div id="mothers-day-banner" role="banner" aria-label="Mother's Day promotion">
+  <span>💐 Mother's Day Sale! Use code <span class="md-banner__code">MOMSDAY</span> for <span class="md-banner__strike">full price</span> <strong>20% off</strong> all plans.</span>
+  <a class="md-banner__cta" href="https://n8n.io/pricing/" target="_blank" rel="noopener">Get the deal</a>
+  <button class="md-banner__close" aria-label="Dismiss banner" onclick="dismissMothersDayBanner()">&#x2715;</button>
+</div>
+<script>
+  (function() {
+    if (localStorage.getItem('momsdayBannerDismissed') === '1') {
+      var el = document.getElementById('mothers-day-banner');
+      if (el) el.style.display = 'none';
+    }
+  })();
+  function dismissMothersDayBanner() {
+    localStorage.setItem('momsdayBannerDismissed', '1');
+    var el = document.getElementById('mothers-day-banner');
+    if (el) el.style.display = 'none';
+  }
+</script>
 
 {{ super() }}
 
