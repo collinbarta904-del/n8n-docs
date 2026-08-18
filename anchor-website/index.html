@@ -90,12 +90,12 @@
     box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 8px 20px -12px rgba(150,170,200,.45)}
   .btn-steel:hover{background:linear-gradient(180deg,#fff,var(--steel-mid) 58%,var(--steel-lo))}
 
-  /* ---------- hero (asymmetric, editorial) ---------- */
-  .hero{position:relative;min-height:calc(100svh - 76px);display:grid;align-items:center;
-    grid-template-columns:1.05fr .95fr;gap:clamp(20px,4vw,60px);padding:60px 0 80px}
-  @media(max-width:900px){.hero{grid-template-columns:1fr;text-align:left;padding-top:24px}}
-  .hero-copy{display:grid;gap:22px;max-width:22ch;justify-items:start}
-  @media(max-width:900px){.hero-copy{max-width:none;order:2}}
+  /* ---------- hero (single column, editorial) ---------- */
+  .hero{position:relative;min-height:calc(92svh - 76px);display:grid;align-items:center;
+    padding:60px 0 80px}
+  @media(max-width:900px){.hero{padding-top:24px}}
+  .hero-copy{display:grid;gap:24px;max-width:30ch;justify-items:start}
+  @media(max-width:900px){.hero-copy{max-width:none}}
   .hero-eyebrow{display:flex;align-items:center;gap:12px}
   .hero-eyebrow::before{content:"";width:26px;height:1px;background:var(--steel-lo)}
   .hero h1{font-size:var(--step-4);margin:0;max-width:16ch}
@@ -103,15 +103,6 @@
   .hero .lede{max-width:46ch;color:var(--muted);font-size:var(--step-1);font-weight:300;line-height:1.55;margin:0}
   .hero .lede b{color:var(--text);font-weight:500}
   .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
-
-  .hero-anchor{position:relative;display:grid;place-items:center;min-height:min(70vh,560px)}
-  @media(max-width:900px){.hero-anchor{order:1;min-height:44vh;margin-bottom:8px}}
-
-  .anchor-stage{position:relative;width:min(360px,74vw);aspect-ratio:200/300}
-  .anchor-stage .halo{position:absolute;inset:-24% -24% -8% -24%;z-index:0;
-    background:radial-gradient(48% 44% at 50% 42%,rgba(160,180,210,.16),transparent 70%);filter:blur(6px)}
-  .anchor-svg{position:relative;z-index:1;width:100%;height:100%;overflow:visible;
-    filter:drop-shadow(0 26px 34px rgba(0,0,0,.55))}
 
   /* ---------- sections ---------- */
   section{position:relative;z-index:2}
@@ -245,18 +236,6 @@
     <div class="hero-cta">
       <a class="btn btn-steel" href="#contact">Start a project <span class="arw">→</span></a>
       <a class="btn" href="#work">See our work</a>
-    </div>
-  </div>
-
-  <div class="hero-anchor">
-    <div class="anchor-stage" aria-hidden="true">
-      <div class="halo"></div>
-      <svg class="anchor-svg" viewBox="0 0 200 300">
-        <g stroke="url(#steelV)" stroke-width="4.5" fill="none" opacity=".8" stroke-linecap="round">
-          <path d="M100 2 q6 10 0 20 q-6 10 0 20"/>
-        </g>
-        <use href="#anchorPaths"/>
-      </svg>
     </div>
   </div>
 </section>
