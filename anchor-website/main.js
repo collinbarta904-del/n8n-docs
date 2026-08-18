@@ -67,7 +67,7 @@
 
     function tick(now) {
       const elapsed = now - startTime;
-      const t = Math.min(elapsed / duration, 1);
+      const t = Math.max(0, Math.min(elapsed / duration, 1));
       const value = target * easeOutCubic(t);
       el.textContent = format(value, decimals) + suffix;
       if (t < 1) {
