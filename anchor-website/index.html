@@ -7,7 +7,7 @@
 <title>Built by Anchor — Applied AI Studio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Hanken+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 
 <style>
   :root{
@@ -26,8 +26,8 @@
     --maxw:1200px;
     --gutter:clamp(20px,5vw,72px);
 
-    --f-display:"Bodoni Moda",Georgia,"Times New Roman",serif;
-    --f-body:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --f-display:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --f-body:"Hanken Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
     --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
 
     --step--1:clamp(.76rem,.73rem + .16vw,.84rem);
@@ -51,22 +51,13 @@
   .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
 
   .mono{font-family:var(--f-mono);font-weight:400;font-size:var(--step--1);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-  .display{font-family:var(--f-display);font-weight:500;line-height:1.04;letter-spacing:-.008em;text-wrap:balance}
+  .display{font-family:var(--f-display);font-weight:600;line-height:1.05;letter-spacing:-.018em;text-wrap:balance}
 
   /* ---------- ambient ---------- */
   .sea{position:fixed;inset:0;z-index:-2;overflow:hidden;
     background:radial-gradient(125% 95% at 68% -12%, #13223c 0%, #0b1526 46%, var(--ground) 80%)}
   .moon{position:absolute;top:-20vmax;right:-6vmax;width:58vmax;height:58vmax;border-radius:50%;
     background:radial-gradient(circle at 50% 45%,rgba(133,152,182,.15),rgba(133,152,182,.045) 44%,transparent 64%);filter:blur(2px)}
-  .tide{position:fixed;left:0;right:0;top:60%;height:32vh;z-index:-2;pointer-events:none;overflow:hidden;
-    -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.9),transparent);mask-image:linear-gradient(180deg,rgba(0,0,0,.9),transparent)}
-  .tide::before,.tide::after{content:"";position:absolute;inset:-20% -40%;
-    background:radial-gradient(60% 22% at 22% 30%,rgba(150,172,205,.055),transparent 60%),
-      radial-gradient(50% 20% at 72% 55%,rgba(150,172,205,.045),transparent 60%),
-      repeating-linear-gradient(90deg,transparent 0 64px,rgba(150,172,205,.028) 64px 65px);
-    animation:tide 30s linear infinite}
-  .tide::after{animation-duration:47s;animation-direction:reverse;opacity:.7}
-  @keyframes tide{from{transform:translateX(0)}to{transform:translateX(-256px)}}
   .grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.045;mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
 
@@ -108,7 +99,7 @@
   .hero-eyebrow{display:flex;align-items:center;gap:12px}
   .hero-eyebrow::before{content:"";width:26px;height:1px;background:var(--steel-lo)}
   .hero h1{font-size:var(--step-4);margin:0;max-width:16ch}
-  .hero h1 em{font-style:italic;font-weight:400;color:#fff}
+  .hero h1 em{font-style:normal;font-weight:600;color:#fff}
   .hero .lede{max-width:46ch;color:var(--muted);font-size:var(--step-1);font-weight:300;line-height:1.55;margin:0}
   .hero .lede b{color:var(--text);font-weight:500}
   .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
@@ -120,23 +111,7 @@
   .anchor-stage .halo{position:absolute;inset:-24% -24% -8% -24%;z-index:0;
     background:radial-gradient(48% 44% at 50% 42%,rgba(160,180,210,.16),transparent 70%);filter:blur(6px)}
   .anchor-svg{position:relative;z-index:1;width:100%;height:100%;overflow:visible;
-    filter:drop-shadow(0 26px 34px rgba(0,0,0,.55));will-change:transform;transform-box:view-box;transform-origin:50% 1%}
-  .sway{transform-box:view-box;transform-origin:50% 1%;animation:sway 6.8s cubic-bezier(.45,0,.55,1) infinite}
-  @keyframes sway{0%,100%{transform:rotate(-3.1deg)}50%{transform:rotate(3.1deg)}}
-  .sheen{mix-blend-mode:screen;opacity:.85}
-  .sheen rect{animation:sheen 7.5s ease-in-out infinite;transform-box:view-box}
-  @keyframes sheen{0%,20%{transform:translateX(-150px)}56%,100%{transform:translateX(210px)}}
-  .ripple circle{transform-box:view-box;transform-origin:100px 250px;animation:ripple 5.8s ease-out infinite;opacity:0}
-  .ripple circle:nth-child(2){animation-delay:1.9s}
-  .ripple circle:nth-child(3){animation-delay:3.8s}
-  @keyframes ripple{0%{transform:scale(.2);opacity:.45}100%{transform:scale(1);opacity:0}}
-
-  .scrollcue{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);z-index:2;
-    display:grid;justify-items:center;gap:9px;color:var(--muted-dim)}
-  @media(max-width:900px){.scrollcue{display:none}}
-  .scrollcue .rail{width:1px;height:44px;background:linear-gradient(var(--muted-dim),transparent);position:relative;overflow:hidden}
-  .scrollcue .rail::after{content:"";position:absolute;top:-40%;left:0;width:1px;height:40%;background:var(--steel-mid);animation:drop 2.6s cubic-bezier(.7,0,.3,1) infinite}
-  @keyframes drop{0%{top:-45%}70%{top:100%}100%{top:100%}}
+    filter:drop-shadow(0 26px 34px rgba(0,0,0,.55))}
 
   /* ---------- sections ---------- */
   section{position:relative;z-index:2}
@@ -213,19 +188,12 @@
     margin-top:46px;padding-top:22px;border-top:1px solid var(--line-soft);
     font-family:var(--f-mono);font-size:.7rem;letter-spacing:.06em;color:var(--muted-dim)}
 
-  .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
-  .reveal.in{opacity:1;transform:none}
-  @media(prefers-reduced-motion:reduce){
-    .sway,.sheen rect,.ripple circle,.scrollcue .rail::after,.tide::before,.tide::after{animation:none!important}
-    .reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}
-  }
   :focus-visible{outline:2px solid var(--steel-mid);outline-offset:3px;border-radius:2px}
 </style>
 </head>
 <body>
 
 <div class="sea"><div class="moon"></div></div>
-<div class="tide"></div>
 <div class="grain"></div>
 
 <!-- anchor glyph (folded-steel vector — swap for real logo once provided) -->
@@ -284,24 +252,13 @@
     <div class="anchor-stage" aria-hidden="true">
       <div class="halo"></div>
       <svg class="anchor-svg" viewBox="0 0 200 300">
-        <g class="ripple" stroke="rgba(170,190,215,.5)" fill="none" stroke-width="1">
-          <circle cx="100" cy="250" r="46"/><circle cx="100" cy="250" r="46"/><circle cx="100" cy="250" r="46"/>
+        <g stroke="url(#steelV)" stroke-width="4.5" fill="none" opacity=".8" stroke-linecap="round">
+          <path d="M100 2 q6 10 0 20 q-6 10 0 20"/>
         </g>
-        <g class="sway">
-          <g stroke="url(#steelV)" stroke-width="4.5" fill="none" opacity=".8" stroke-linecap="round">
-            <path d="M100 2 q6 10 0 20 q-6 10 0 20"/>
-          </g>
-          <use href="#anchorPaths"/>
-          <clipPath id="clipA"><use href="#anchorPaths"/></clipPath>
-          <g class="sheen" clip-path="url(#clipA)">
-            <rect x="-40" y="-20" width="34" height="340" transform="skewX(-18)" fill="rgba(255,255,255,.55)" filter="blur(3px)"/>
-          </g>
-        </g>
+        <use href="#anchorPaths"/>
       </svg>
     </div>
   </div>
-
-  <a class="scrollcue mono" href="#services" aria-label="Scroll"><span>Scroll</span><span class="rail"></span></a>
 </section>
 
 <!-- ================= PRINCIPLES ================= -->
@@ -462,26 +419,6 @@
   const nav=document.getElementById('nav');
   const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>12);
   onScroll();addEventListener('scroll',onScroll,{passive:true});
-
-  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},
-    {threshold:.12,rootMargin:"0px 0px -8% 0px"});
-  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(Math.min(i%3,2)*70)+'ms';io.observe(el);});
-
-  // anchor leans toward the cursor
-  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-  const svg=document.querySelector('.anchor-svg');
-  const halo=document.querySelector('.anchor-stage .halo');
-  if(svg && !reduce && matchMedia('(pointer:fine)').matches){
-    let tx=0,ty=0,rot=0,cx=0,cy=0,cr=0,raf=0;
-    const onMove=(e)=>{const nx=(e.clientX/innerWidth)*2-1,ny=(e.clientY/innerHeight)*2-1;
-      tx=nx*10;ty=ny*7;rot=nx*5;if(!raf)raf=requestAnimationFrame(tick);};
-    const tick=()=>{cx+=(tx-cx)*.08;cy+=(ty-cy)*.08;cr+=(rot-cr)*.08;
-      svg.style.transform=`translate(${cx.toFixed(2)}px,${cy.toFixed(2)}px) rotate(${cr.toFixed(2)}deg)`;
-      if(halo)halo.style.transform=`translate(${(-cx*.6).toFixed(2)}px,${(-cy*.6).toFixed(2)}px)`;
-      if(Math.abs(tx-cx)>.05||Math.abs(ty-cy)>.05||Math.abs(rot-cr)>.05)raf=requestAnimationFrame(tick);else raf=0;};
-    addEventListener('pointermove',onMove,{passive:true});
-    document.addEventListener('mouseleave',()=>{tx=ty=rot=0;if(!raf)raf=requestAnimationFrame(tick);});
-  }
 </script>
 </body>
 </html>
