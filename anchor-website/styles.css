@@ -45,7 +45,8 @@ button{font-family:inherit;border:none;background:none;cursor:pointer;color:inhe
 .bg{
   position:absolute;
   inset:0;
-  background:var(--bg);
+  /* matches assets/poster.webp so first paint is clean before the video loads */
+  background:radial-gradient(120% 92% at 50% 22%,#0f1727 0%,#070b12 46%,var(--bg) 82%);
   overflow:hidden;
   z-index:0;
 }
@@ -57,6 +58,7 @@ button{font-family:inherit;border:none;background:none;cursor:pointer;color:inhe
   object-fit:cover;
   pointer-events:none;
   z-index:0;
+  background:var(--bg);
 }
 
 /* ============ Page shell ============ */
