@@ -2,400 +2,112 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Built by Anchor — an applied AI studio building agents, copilots, and automation that ship, scale, and hold up in production.">
-<title>Built by Anchor — Applied AI Studio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intelligence Designed To Evolve</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Hanken+Grotesk:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://db.onlinewebfonts.com/c/8cb707a9b8a73f8a7403336b861c3074?family=BubbledotICG-FinePos" rel="stylesheet">
+<link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+  crossorigin="anonymous" referrerpolicy="no-referrer">
 
-<style>
-  :root{
-    --ground:#0A1220;
-    --ground-2:#0C1626;
-    --surface:#111C30;
-    --line:#22304a;
-    --line-soft:#1a2740;
-    --text:#E4E9F0;
-    --muted:#8b98ac;
-    --muted-dim:#5f6e86;
-    --steel-lo:#7E8A9B;
-    --steel-mid:#C7CFDA;
-    --steel-hi:#EDEFF3;
-
-    --maxw:1200px;
-    --gutter:clamp(20px,5vw,72px);
-
-    --f-display:"Bricolage Grotesque",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-    --f-body:"Hanken Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-    --f-mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
-
-    --step--1:clamp(.76rem,.73rem + .16vw,.84rem);
-    --step-0:clamp(1rem,.97rem + .16vw,1.075rem);
-    --step-1:clamp(1.15rem,1.05rem + .45vw,1.35rem);
-    --step-2:clamp(1.5rem,1.25rem + 1.1vw,2rem);
-    --step-3:clamp(2rem,1.6rem + 2vw,3rem);
-    --step-4:clamp(2.7rem,1.9rem + 3.8vw,4.9rem);
-  }
-
-  *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-  body{
-    margin:0;background:var(--ground);color:var(--text);
-    font-family:var(--f-body);font-weight:300;font-size:var(--step-0);
-    line-height:1.62;letter-spacing:.004em;-webkit-font-smoothing:antialiased;overflow-x:hidden;
-  }
-  ::selection{background:rgba(199,207,218,.22);color:#fff}
-  a{color:inherit;text-decoration:none}
-  img{max-width:100%;display:block}
-  .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
-
-  .mono{font-family:var(--f-mono);font-weight:400;font-size:var(--step--1);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-  .display{font-family:var(--f-display);font-weight:600;line-height:1.05;letter-spacing:-.018em;text-wrap:balance}
-
-  /* ---------- ambient ---------- */
-  .sea{position:fixed;inset:0;z-index:-2;overflow:hidden;
-    background:radial-gradient(125% 95% at 68% -12%, #13223c 0%, #0b1526 46%, var(--ground) 80%)}
-  .moon{position:absolute;top:-20vmax;right:-6vmax;width:58vmax;height:58vmax;border-radius:50%;
-    background:radial-gradient(circle at 50% 45%,rgba(133,152,182,.15),rgba(133,152,182,.045) 44%,transparent 64%);filter:blur(2px)}
-  .grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.045;mix-blend-mode:overlay;
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>")}
-
-  /* ---------- nav ---------- */
-  header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);
-    background:linear-gradient(180deg,rgba(10,18,32,.8),rgba(10,18,32,.28));
-    border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
-  header.nav.scrolled{border-bottom-color:var(--line-soft);background:rgba(10,18,32,.9)}
-  .nav-in{display:flex;align-items:center;justify-content:space-between;height:76px}
-  .brand{display:flex;align-items:center;gap:12px}
-  .brand svg{width:23px;height:30px;flex:none}
-  .wordmark{display:flex;flex-direction:column;line-height:1}
-  .wordmark small{font-family:var(--f-mono);font-size:.56rem;letter-spacing:.34em;color:var(--muted-dim);margin-bottom:3px}
-  .wordmark b{font-family:var(--f-display);font-weight:600;font-size:1.2rem;letter-spacing:.01em}
-  .nav-links{display:flex;align-items:center;gap:34px}
-  .nav-links a{font-size:.83rem;letter-spacing:.03em;color:var(--muted);transition:color .2s}
-  .nav-links a:hover{color:var(--text)}
-  .nav-links .cta-link{color:var(--text)}
-  @media(max-width:760px){.nav-links a:not(.cta-link){display:none}}
-
-  .btn{display:inline-flex;align-items:center;gap:.6em;font-family:var(--f-mono);font-size:.73rem;
-    letter-spacing:.14em;text-transform:uppercase;padding:.85em 1.4em;border-radius:2px;
-    border:1px solid var(--line);color:var(--text);background:rgba(255,255,255,.015);
-    transition:border-color .25s,background .25s,transform .25s;cursor:pointer}
-  .btn:hover{border-color:#3c506f;background:rgba(255,255,255,.05);transform:translateY(-1px)}
-  .btn .arw{transition:transform .25s}
-  .btn:hover .arw{transform:translateX(3px)}
-  .btn-steel{border:none;color:#0b1526;font-weight:500;
-    background:linear-gradient(180deg,var(--steel-hi),var(--steel-mid) 58%,var(--steel-lo));
-    box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 8px 20px -12px rgba(150,170,200,.45)}
-  .btn-steel:hover{background:linear-gradient(180deg,#fff,var(--steel-mid) 58%,var(--steel-lo))}
-
-  /* ---------- hero (single column, editorial) ---------- */
-  .hero{position:relative;min-height:calc(92svh - 76px);display:grid;align-items:center;
-    padding:60px 0 80px}
-  @media(max-width:900px){.hero{padding-top:24px}}
-  .hero-copy{display:grid;gap:24px;max-width:30ch;justify-items:start}
-  @media(max-width:900px){.hero-copy{max-width:none}}
-  .hero-eyebrow{display:flex;align-items:center;gap:12px}
-  .hero-eyebrow::before{content:"";width:26px;height:1px;background:var(--steel-lo)}
-  .hero h1{font-size:var(--step-4);margin:0;max-width:16ch}
-  .hero h1 em{font-style:normal;font-weight:600;color:#fff}
-  .hero .lede{max-width:46ch;color:var(--muted);font-size:var(--step-1);font-weight:300;line-height:1.55;margin:0}
-  .hero .lede b{color:var(--text);font-weight:500}
-  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:6px}
-
-  /* ---------- sections ---------- */
-  section{position:relative;z-index:2}
-  .pad{padding-block:clamp(78px,10vw,140px)}
-  .rule{border:none;border-top:1px solid var(--line-soft);margin:0}
-
-  .sec-head{display:grid;gap:16px;max-width:56ch;margin-bottom:52px}
-  .sec-head .kick{display:flex;align-items:center;gap:12px}
-  .sec-head .kick::before{content:"";width:26px;height:1px;background:var(--steel-lo)}
-  .sec-head h2{font-size:var(--step-3);margin:0}
-  .sec-head p{color:var(--muted);margin:0;font-size:var(--step-1);font-weight:300}
-
-  /* principles strip (honest, not fake metrics) */
-  .principles{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-soft);
-    border-block:1px solid var(--line-soft)}
-  .principles div{background:var(--ground);padding:26px var(--gutter);display:grid;gap:8px}
-  .principles .p-k{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-dim)}
-  .principles .p-v{font-family:var(--f-display);font-size:clamp(1.15rem,.9rem+.9vw,1.5rem);font-weight:500;color:var(--text)}
-  @media(max-width:760px){.principles{grid-template-columns:1fr}}
-
-  /* what we do */
-  .svc{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line-soft);
-    border:1px solid var(--line-soft);border-radius:3px;overflow:hidden}
-  @media(max-width:760px){.svc{grid-template-columns:1fr}}
-  .svc article{background:var(--ground-2);padding:clamp(28px,3.2vw,46px);display:grid;gap:14px;position:relative;transition:background .3s}
-  .svc article:hover{background:var(--surface)}
-  .svc .cat{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--steel-mid)}
-  .svc h3{font-family:var(--f-display);font-weight:500;font-size:var(--step-2);margin:0}
-  .svc p{color:var(--muted);margin:0;max-width:46ch}
-  .svc ul{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
-  .svc li{font-family:var(--f-mono);font-size:.67rem;letter-spacing:.05em;color:var(--muted);border:1px solid var(--line);border-radius:2px;padding:.34em .7em}
-
-  /* how it goes */
-  .proc{display:grid;gap:1px;background:var(--line-soft);border-block:1px solid var(--line-soft)}
-  .step{background:var(--ground);display:grid;grid-template-columns:64px 200px 1fr;gap:clamp(16px,3vw,44px);
-    align-items:baseline;padding:clamp(24px,3vw,38px) 0;transition:background .3s}
-  .step:hover{background:var(--ground-2)}
-  .step .num{font-family:var(--f-mono);font-size:.78rem;color:var(--steel-mid);letter-spacing:.08em}
-  .step h4{font-family:var(--f-display);font-weight:500;font-size:var(--step-2);margin:0}
-  .step p{color:var(--muted);margin:0;max-width:52ch}
-  @media(max-width:760px){.step{grid-template-columns:44px 1fr;row-gap:12px}.step p{grid-column:1/-1}}
-
-  /* recent work */
-  .work{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  @media(max-width:900px){.work{grid-template-columns:1fr}}
-  .card{background:var(--surface);border:1px solid var(--line-soft);border-radius:3px;padding:28px;
-    display:grid;gap:14px;transition:transform .3s,border-color .3s;align-content:start}
-  .card:hover{transform:translateY(-4px);border-color:var(--line)}
-  .card .sector{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted-dim)}
-  .card h3{font-family:var(--f-display);font-weight:500;font-size:var(--step-1);margin:0}
-  .card p{color:var(--muted);margin:0;font-size:.95rem}
-  .card .metric{margin-top:6px;padding-top:16px;border-top:1px solid var(--line-soft);
-    font-family:var(--f-mono);font-size:.72rem;letter-spacing:.04em;color:var(--steel-mid)}
-
-  /* contact */
-  .contact{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;
-    border:1px solid var(--line-soft);border-radius:4px;
-    background:radial-gradient(130% 150% at 12% 0%,#132340,#0b1526 62%);padding:clamp(38px,5vw,68px) clamp(28px,4vw,60px)}
-  @media(max-width:760px){.contact{grid-template-columns:1fr;text-align:left}}
-  .contact h2{font-size:var(--step-3);margin:0 0 12px;max-width:18ch}
-  .contact p{color:var(--muted);margin:0;max-width:44ch}
-
-  /* footer */
-  footer{border-top:1px solid var(--line-soft);padding-block:52px 38px;color:var(--muted)}
-  .foot-grid{display:flex;flex-wrap:wrap;gap:34px;justify-content:space-between;align-items:flex-start}
-  .foot-brand{display:grid;gap:14px;max-width:34ch}
-  .foot-brand p{margin:0;font-size:.92rem;color:var(--muted)}
-  .foot-cols{display:flex;gap:60px;flex-wrap:wrap}
-  .foot-cols h5{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted-dim);margin:0 0 14px}
-  .foot-cols ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
-  .foot-cols a{font-size:.9rem;color:var(--muted);transition:color .2s}
-  .foot-cols a:hover{color:var(--text)}
-  .foot-base{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;
-    margin-top:46px;padding-top:22px;border-top:1px solid var(--line-soft);
-    font-family:var(--f-mono);font-size:.7rem;letter-spacing:.06em;color:var(--muted-dim)}
-
-  :focus-visible{outline:2px solid var(--steel-mid);outline-offset:3px;border-radius:2px}
-</style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<div class="sea"><div class="moon"></div></div>
-<div class="grain"></div>
-
-<!-- anchor glyph (folded-steel vector — swap for real logo once provided) -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#EDEFF3"/><stop offset="34%" stop-color="#C7CFDA"/>
-      <stop offset="49%" stop-color="#9AA6B6"/><stop offset="51%" stop-color="#7E8A9B"/>
-      <stop offset="66%" stop-color="#A6B0BF"/><stop offset="100%" stop-color="#D3DAE3"/>
-    </linearGradient>
-    <linearGradient id="steelV" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#F2F4F7"/><stop offset="100%" stop-color="#8894A5"/>
-    </linearGradient>
-    <g id="anchorPaths">
-      <circle cx="100" cy="46" r="24" fill="none" stroke="url(#steel)" stroke-width="15"/>
-      <path d="M92 74 h16 l-3 150 h-10 z" fill="url(#steel)"/>
-      <path d="M44 104 C70 96 130 96 156 104 C130 112 70 112 44 104 Z" fill="url(#steel)"/>
-      <path d="M100 150 C100 150 96 214 40 224 C56 232 78 232 92 220 L100 232 L108 220
-               C122 232 144 232 160 224 C104 214 100 150 100 150 Z
-               M40 224 L30 196 L58 208 Z M160 224 L170 196 L142 208 Z" fill="url(#steel)"/>
-    </g>
-    <g id="anchorGlyph"><use href="#anchorPaths"/></g>
-  </defs>
-</svg>
-
-<!-- ================= NAV ================= -->
-<header class="nav" id="nav">
-  <div class="wrap nav-in">
-    <a class="brand" href="#top" aria-label="Built by Anchor — home">
-      <svg viewBox="0 0 200 300" aria-hidden="true"><use href="#anchorGlyph"/></svg>
-      <span class="wordmark"><small>BUILT BY</small><b>Anchor</b></span>
-    </a>
-    <nav class="nav-links">
-      <a href="#work">Work</a>
-      <a href="#services">What we do</a>
-      <a href="#process">How it goes</a>
-      <a class="cta-link" href="#contact">Start a project →</a>
-    </nav>
+  <!-- Background video -->
+  <div class="bg">
+    <video class="bg-video" autoplay muted loop playsinline>
+      <source
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260809_012548_ef22562c-c0ae-4816-ad9d-f8922af4e6a7.mp4"
+        type="video/mp4"
+      />
+    </video>
   </div>
-</header>
 
-<a id="top"></a>
-<!-- ================= HERO ================= -->
-<section class="hero wrap">
-  <div class="hero-copy">
-    <p class="mono hero-eyebrow">Applied AI Studio</p>
-    <h1 class="display">Most AI never leaves the <em>demo.</em></h1>
-    <p class="lede">We build the kind that does.</p>
-    <div class="hero-cta">
-      <a class="btn btn-steel" href="#contact">Start a project <span class="arw">→</span></a>
-      <a class="btn" href="#work">See our work</a>
-    </div>
-  </div>
-</section>
+  <div class="page">
 
-<!-- ================= PRINCIPLES ================= -->
-<section class="principles">
-  <div class="reveal"><span class="p-k">Who builds it</span><span class="p-v">Senior engineers only</span></div>
-  <div class="reveal"><span class="p-k">How fast</span><span class="p-v">Shipped in weeks</span></div>
-  <div class="reveal"><span class="p-k">After launch</span><span class="p-v">We stay</span></div>
-</section>
+    <!-- 1) Header -->
+    <header class="header">
+      <a class="logo" href="#" aria-label="Home">
+        <img src="assets/logo.webp" alt="" width="52" height="52">
+      </a>
 
-<!-- ================= WHAT WE DO ================= -->
-<section class="pad" id="services">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <p class="mono kick">What we do</p>
-      <h2 class="display">The whole thing.</h2>
-    </div>
-    <div class="svc">
-      <article class="reveal">
-        <span class="cat">Engineering</span>
-        <h3 class="display">Intelligence that ships</h3>
-        <p>Agents, copilots, and retrieval built for real users.</p>
-        <ul><li>Agents</li><li>RAG</li><li>Evals</li></ul>
-      </article>
-      <article class="reveal">
-        <span class="cat">Automation</span>
-        <h3 class="display">The busywork, gone</h3>
-        <p>The manual work your team shouldn't be doing.</p>
-        <ul><li>Workflows</li><li>Integrations</li></ul>
-      </article>
-      <article class="reveal">
-        <span class="cat">Product</span>
-        <h3 class="display">Reach-for-it design</h3>
-        <p>Interfaces that make the AI feel obvious.</p>
-        <ul><li>Copilots</li><li>Web apps</li></ul>
-      </article>
-      <article class="reveal">
-        <span class="cat">Infrastructure</span>
-        <h3 class="display">The part that holds</h3>
-        <p>Pipelines and infra built to scale quietly.</p>
-        <ul><li>Pipelines</li><li>Cloud</li></ul>
-      </article>
-    </div>
-  </div>
-</section>
+      <nav class="nav-pill" aria-label="Primary">
+        <a class="nav-link active" href="#">Home</a>
+        <a class="nav-link" href="#">Product</a>
+        <a class="nav-link" href="#">Case Studies</a>
+        <a class="nav-link" href="#">Contact</a>
+      </nav>
 
-<hr class="rule">
+      <a class="signin" href="#">Sign in</a>
 
-<!-- ================= HOW IT GOES ================= -->
-<section class="pad" id="process">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <p class="mono kick">How it goes</p>
-      <h2 class="display">Four steps.</h2>
-    </div>
-    <div class="proc">
-      <div class="step reveal">
-        <span class="num">01</span>
-        <h4 class="display">Scope</h4>
-        <p>We find the real problem worth solving.</p>
-      </div>
-      <div class="step reveal">
-        <span class="num">02</span>
-        <h4 class="display">Prototype</h4>
-        <p>Something working in your hands in weeks.</p>
-      </div>
-      <div class="step reveal">
-        <span class="num">03</span>
-        <h4 class="display">Build</h4>
-        <p>Hardened into production — tested and monitored.</p>
-      </div>
-      <div class="step reveal">
-        <span class="num">04</span>
-        <h4 class="display">Stay</h4>
-        <p>We keep it running long after launch.</p>
-      </div>
-    </div>
-  </div>
-</section>
+      <button class="burger" type="button" aria-label="Open menu"
+        aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </header>
 
-<hr class="rule">
-
-<!-- ================= RECENT WORK ================= -->
-<section class="pad" id="work">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <p class="mono kick">Recent work</p>
-      <h2 class="display">Built, shipped, still running.</h2>
-    </div>
-    <div class="work">
-      <article class="card reveal">
-        <span class="sector">Fintech · Support</span>
-        <h3 class="display">A support agent people don't fight</h3>
-        <p>Front-line support, a human always one tap away.</p>
-        <div class="metric">40k conversations / month</div>
-      </article>
-      <article class="card reveal">
-        <span class="sector">Logistics · Operations</span>
-        <h3 class="display">A back office that runs itself</h3>
-        <p>Intake, matching, and invoicing — automated.</p>
-        <div class="metric">~30 hrs / week returned</div>
-      </article>
-      <article class="card reveal">
-        <span class="sector">Healthtech · Data</span>
-        <h3 class="display">One source of truth</h3>
-        <p>Spreadsheets replaced with dashboards a board trusts.</p>
-        <div class="metric">6 systems → 1</div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ================= CONTACT ================= -->
-<section class="pad" id="contact" style="padding-top:0">
-  <div class="wrap">
-    <div class="contact reveal">
-      <div>
-        <p class="mono" style="margin:0 0 16px">Let's talk</p>
-        <h2 class="display">Have something worth building?</h2>
-        <p>Tell us where you're headed.</p>
-      </div>
-      <a class="btn btn-steel" href="mailto:hello@builtbyanchor.com">hello@builtbyanchor.com <span class="arw">→</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ================= FOOTER ================= -->
-<footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div class="foot-brand">
-        <a class="brand" href="#top">
-          <svg viewBox="0 0 200 300" aria-hidden="true" style="width:20px;height:26px"><use href="#anchorGlyph"/></svg>
-          <span class="wordmark"><small>BUILT BY</small><b>Anchor</b></span>
-        </a>
-        <p>An applied AI studio. Remote, senior, allergic to templates.</p>
-      </div>
-      <div class="foot-cols">
-        <div>
-          <h5>Studio</h5>
-          <ul><li><a href="#work">Work</a></li><li><a href="#services">What we do</a></li><li><a href="#process">How it goes</a></li></ul>
+    <!-- 2) Hero -->
+    <main class="hero">
+      <div class="trust anim" style="--d:0.05s">
+        <div class="avatars">
+          <span class="avatar a1"><i class="fa-brands fa-microsoft" aria-hidden="true"></i></span>
+          <span class="avatar a2"><i class="fa-brands fa-amazon" aria-hidden="true"></i></span>
+          <span class="avatar a3"><i class="fa-brands fa-google" aria-hidden="true"></i></span>
         </div>
-        <div>
-          <h5>Contact</h5>
-          <ul><li><a href="mailto:hello@builtbyanchor.com">hello@builtbyanchor.com</a></li><li><a href="#contact">Start a project</a></li></ul>
-        </div>
+        <div class="trust-pill">Trusted by 2000+ Enterprises</div>
       </div>
-    </div>
-    <div class="foot-base">
-      <span>© 2026 Built by Anchor</span>
-      <span>Steady as she goes</span>
-    </div>
-  </div>
-</footer>
 
-<script>
-  const nav=document.getElementById('nav');
-  const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>12);
-  onScroll();addEventListener('scroll',onScroll,{passive:true});
-</script>
+      <h1 class="headline anim">
+        <span class="line line1">Intelligence</span>
+        <span class="line line2">Designed To Evolve</span>
+      </h1>
+
+      <p class="subhead anim" style="--d:0.28s">Build applications that reason, adapt and collaborate using a modular AI platform designed for production.</p>
+
+      <a class="cta" style="--d:0.4s" href="#">Get Started</a>
+    </main>
+
+    <!-- 3) Stats footer -->
+    <footer class="stats">
+      <div class="stat anim" style="--d:0.5s">
+        <div class="stat-icon">&lt;</div>
+        <div class="stat-value" data-target="120" data-decimals="0" data-suffix="ms">0</div>
+        <div class="stat-label">Inference Time</div>
+      </div>
+      <div class="stat anim" style="--d:0.58s">
+        <div class="stat-icon">%</div>
+        <div class="stat-value" data-target="99.99" data-decimals="2" data-suffix="%">0</div>
+        <div class="stat-label">Platform Uptime</div>
+      </div>
+      <div class="stat anim" style="--d:0.66s">
+        <div class="stat-icon">*</div>
+        <div class="stat-value" data-target="24" data-decimals="0" data-suffix="/7">0</div>
+        <div class="stat-label">Autonomous Runtime</div>
+      </div>
+      <div class="stat anim" style="--d:0.74s">
+        <div class="stat-icon">#</div>
+        <div class="stat-value" data-target="2.4" data-decimals="1" data-suffix="M">0</div>
+        <div class="stat-label">Context Windows</div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="overlay" hidden></div>
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <a class="m-link active" href="#">Home</a>
+    <a class="m-link" href="#">Product</a>
+    <a class="m-link" href="#">Case Studies</a>
+    <a class="m-link" href="#">Contact</a>
+    <a class="m-signin" href="#">Sign in</a>
+  </div>
+
+  <script src="main.js"></script>
 </body>
 </html>
